@@ -165,9 +165,9 @@ p {
 
     .btn {
         display: block;
-        width: 100%;
-        max-width: 300px;
-        margin: 1.5rem auto 0;
+        width: fit-content;
+        min-width: 160px;
+        margin: 2rem auto 0;
         text-align: center;
     }
 
