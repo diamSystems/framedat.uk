@@ -190,14 +190,6 @@ Honest, professional, doesn't backtrack on trust. Luke will respect it — anyon
 - Transactional email via Resend (order confirmations + contact form)
 - 2 weeks of post-launch bug fixes (in addition to the retainer)
 
-### Extras (Quoted Separately)
-
-| Extra | Suggested Price |
-|---|---|
-| Merch store (if apparel line launches) | £300–500 |
-| Artist profile pages | £200–400 |
-| Future festival ticketing (2030 scale) | Requote at that time |
-
 ---
 
 ## 8. Notes for Luke
