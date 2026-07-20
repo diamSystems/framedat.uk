@@ -67,7 +67,7 @@ p {
 }
 
 .section {
-    padding: 6rem 0;
+    padding: 8rem 0;
 }
 
 .section--tight {
@@ -250,6 +250,7 @@ p {
     color: #000000;
     cursor: pointer;
     transition: all 0.3s ease;
+    text-align: center;
 }
 
 .btn:hover {
