@@ -109,10 +109,10 @@ function initAuthNav() {
     authLink.className = 'nav__link nav__link--auth';
     
     if (user) {
-        authLink.href = 'pages/my-tickets.html';
+        authLink.href = '/pages/my-tickets.html';
         authLink.textContent = 'My Tickets';
     } else {
-        authLink.href = 'pages/login.html';
+        authLink.href = '/pages/login.html';
         authLink.textContent = 'Login';
     }
 
