@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tickets — framed@</title>
+    <meta name="description" content="Buy tickets for framed@ events. Secure checkout via Stripe.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__inner">
+            <a href="../index.html" class="nav__brand">framed@</a>
+            <button class="nav__toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav__links">
+                <a href="../index.html" class="nav__link">Home</a>
+                <a href="events.html" class="nav__link">Events</a>
+                <a href="tickets.html" class="nav__link nav__link--active">Tickets</a>
+                <a href="archive.html" class="nav__link">Archive</a>
+                <a href="about.html" class="nav__link">About</a>
+                <a href="contact.html" class="nav__link">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header container">
+        <h1>Tickets</h1>
+        <p class="text-large">Secure your spot at the next framed@ event.</p>
+    </header>
+
+    <!-- Event Details -->
+    <section class="section--tight container fade-in">
+        <div class="about-grid">
+
+            <!-- Event Info -->
+            <div>
+                <p class="section-label">Event</p>
+                <h2>framed@ presents: Opening Night</h2>
+                <div class="divider"></div>
+
+                <div class="contact-info">
+                    <div class="contact-info__item">
+                        <p class="contact-info__label">Date</p>
+                        <p class="contact-info__value">26 August 2026</p>
+                    </div>
+                    <div class="contact-info__item">
+                        <p class="contact-info__label">Time</p>
+                        <p class="contact-info__value">Doors 7:00 PM</p>
+                    </div>
+                    <div class="contact-info__item">
+                        <p class="contact-info__label">Venue</p>
+                        <p class="contact-info__value">The Warehouse</p>
+                    </div>
+                    <div class="contact-info__item">
+                        <p class="contact-info__label">Address</p>
+                        <p class="contact-info__value">26 Princess Street<br>Manchester M1 4ND</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ticket Selection -->
+            <div>
+                <p class="section-label">Select Tickets</p>
+                <h2>Tier Options</h2>
+                <div class="divider"></div>
+
+                <div class="event-card mt-3">
+                    <p class="event-card__date">Standard</p>
+                    <h3 class="event-card__title">£15.00</h3>
+                    <p class="event-card__venue">General admission</p>
+                    <p class="event-card__city">Entry to main venue</p>
+                    <a href="payment.html" class="btn">Select</a>
+                </div>
+
+                <div class="event-card mt-2">
+                    <p class="event-card__date">Early Bird</p>
+                    <h3 class="event-card__title">£12.00</h3>
+                    <p class="event-card__venue">Limited quantity</p>
+                    <p class="event-card__city">First 50 tickets only</p>
+                    <a href="payment.html" class="btn">Select</a>
+                </div>
+
+                <div class="event-card mt-2">
+                    <p class="event-card__date">VIP</p>
+                    <h3 class="event-card__title">£25.00</h3>
+                    <p class="event-card__venue">Priority entry + drink</p>
+                    <p class="event-card__city">Skip the queue</p>
+                    <a href="payment.html" class="btn">Select</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Info Section -->
+    <section class="section container fade-in">
+        <p class="section-label">Important</p>
+        <h2>Before You Buy</h2>
+        <div class="divider"></div>
+        <p class="text-large mt-2">
+            All tickets are non-refundable unless the event is cancelled. Bring a valid ID matching your ticket name. Doors open at 7:00 PM sharp.
+        </p>
+        <p class="text-muted mt-3">
+            Payment processed securely via Stripe. framed@ does not store your card details.
+        </p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer__inner">
+            <span class="footer__brand">framed@</span>
+            <div class="footer__links">
+                <a href="../index.html" class="footer__link">Home</a>
+                <a href="events.html" class="footer__link">Events</a>
+                <a href="tickets.html" class="footer__link">Tickets</a>
+                <a href="archive.html" class="footer__link">Archive</a>
+                <a href="about.html" class="footer__link">About</a>
+                <a href="contact.html" class="footer__link">Contact</a>
+            </div>
+            <p class="footer__copy">&copy; 2026 framed@ Limited. Company No. 16987092</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
