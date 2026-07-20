@@ -18,10 +18,23 @@ function initMobileNav() {
 
     if (!toggle || !links) return;
 
+    // Add close button dynamically for mobile
+    const closeBtn = document.createElement('button');
+    closeBtn.className = 'nav__close';
+    closeBtn.innerHTML = '×';
+    closeBtn.setAttribute('aria-label', 'Close menu');
+    links.appendChild(closeBtn);
+
     toggle.addEventListener('click', () => {
         toggle.classList.toggle('nav__toggle--open');
         links.classList.toggle('nav__links--open');
         document.body.style.overflow = links.classList.contains('nav__links--open') ? 'hidden' : '';
+    });
+
+    closeBtn.addEventListener('click', () => {
+        toggle.classList.remove('nav__toggle--open');
+        links.classList.remove('nav__links--open');
+        document.body.style.overflow = '';
     });
 
     links.querySelectorAll('.nav__link').forEach(link => {
