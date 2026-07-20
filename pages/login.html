@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login — framed@</title>
+    <meta name="description" content="Sign in to your framed@ account to view your tickets.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__inner">
+            <a href="../index.html" class="nav__brand">framed@</a>
+            <button class="nav__toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav__links">
+                <a href="../index.html" class="nav__link">Home</a>
+                <a href="events.html" class="nav__link">Events</a>
+                <a href="tickets.html" class="nav__link">Tickets</a>
+                <a href="archive.html" class="nav__link">Archive</a>
+                <a href="about.html" class="nav__link">About</a>
+                <a href="contact.html" class="nav__link">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header container">
+        <h1>Login</h1>
+        <p class="text-large">Sign in to view your tickets.</p>
+    </header>
+
+    <!-- Login Form -->
+    <section class="section--tight container">
+        <div style="max-width: 500px;">
+            <p class="section-label">Your Account</p>
+            <h2>Sign In</h2>
+            <div class="divider"></div>
+
+            <form class="contact-form" id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn btn--filled" style="width: 100%;">Sign In</button>
+            </form>
+
+            <p class="text-muted mt-3" style="font-size: 0.85rem;">
+                Don't have an account? <a href="#" style="border-bottom: 1px solid #000;">Sign up</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- Demo Notice -->
+    <section class="section container">
+        <div style="background: #F0F0F0; padding: 2rem; border: 1px solid #000;">
+            <p class="section-label">Demo Mode</p>
+            <p class="text-large">This is a preview site — login is simulated using browser storage. Any email/password combination will work for testing purposes.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer__inner">
+            <span class="footer__brand">framed@</span>
+            <div class="footer__links">
+                <a href="../index.html" class="footer__link">Home</a>
+                <a href="events.html" class="footer__link">Events</a>
+                <a href="tickets.html" class="footer__link">Tickets</a>
+                <a href="archive.html" class="footer__link">Archive</a>
+                <a href="about.html" class="footer__link">About</a>
+                <a href="contact.html" class="footer__link">Contact</a>
+            </div>
+            <p class="footer__copy">&copy; 2026 framed@ Limited. Company No. 16987092</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        // Simulated login handler
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            
+            // Store user session in localStorage
+            localStorage.setItem('framed_user', JSON.stringify({
+                email: email,
+                loggedInAt: new Date().toISOString()
+            }));
+            
+            // Redirect to my tickets
+            window.location.href = 'my-tickets.html';
+        });
+
+        // Check if already logged in
+        if (localStorage.getItem('framed_user')) {
+            window.location.href = 'my-tickets.html';
+        }
+    </script>
+</body>
+</html>

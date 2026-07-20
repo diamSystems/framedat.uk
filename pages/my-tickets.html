@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Tickets — framed@</title>
+    <meta name="description" content="View your purchased framed@ event tickets.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__inner">
+            <a href="../index.html" class="nav__brand">framed@</a>
+            <button class="nav__toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav__links">
+                <a href="../index.html" class="nav__link">Home</a>
+                <a href="events.html" class="nav__link">Events</a>
+                <a href="tickets.html" class="nav__link">Tickets</a>
+                <a href="archive.html" class="nav__link">Archive</a>
+                <a href="about.html" class="nav__link">About</a>
+                <a href="contact.html" class="nav__link">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header container">
+        <h1>My Tickets</h1>
+        <p class="text-large">Your purchased tickets.</p>
+    </header>
+
+    <!-- User Info -->
+    <section class="section--tight container">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+                <p class="section-label">Signed in as</p>
+                <p id="userEmail" style="font-size: 1.1rem;"></p>
+            </div>
+            <button id="logoutBtn" class="btn">Sign Out</button>
+        </div>
+    </section>
+
+    <!-- Tickets List -->
+    <section class="section--tight container">
+        <p class="section-label">Your Tickets</p>
+        <h2>Upcoming Events</h2>
+        <div class="divider"></div>
+
+        <div id="ticketsList">
+            <!-- Tickets will be loaded here from localStorage -->
+        </div>
+
+        <div id="noTickets" style="display: none;">
+            <p class="text-muted">You haven't purchased any tickets yet.</p>
+            <a href="events.html" class="btn mt-3">Browse Events</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer__inner">
+            <span class="footer__brand">framed@</span>
+            <div class="footer__links">
+                <a href="../index.html" class="footer__link">Home</a>
+                <a href="events.html" class="footer__link">Events</a>
+                <a href="tickets.html" class="footer__link">Tickets</a>
+                <a href="archive.html" class="footer__link">Archive</a>
+                <a href="about.html" class="footer__link">About</a>
+                <a href="contact.html" class="footer__link">Contact</a>
+            </div>
+            <p class="footer__copy">&copy; 2026 framed@ Limited. Company No. 16987092</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        // Check if user is logged in
+        const user = JSON.parse(localStorage.getItem('framed_user'));
+        if (!user) {
+            window.location.href = 'login.html';
+        } else {
+            document.getElementById('userEmail').textContent = user.email;
+        }
+
+        // Logout handler
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            localStorage.removeItem('framed_user');
+            window.location.href = 'login.html';
+        });
+
+        // Load tickets from localStorage
+        function loadTickets() {
+            const tickets = JSON.parse(localStorage.getItem('framed_tickets') || '[]');
+            const ticketsList = document.getElementById('ticketsList');
+            const noTickets = document.getElementById('noTickets');
+
+            if (tickets.length === 0) {
+                ticketsList.style.display = 'none';
+                noTickets.style.display = 'block';
+                return;
+            }
+
+            ticketsList.innerHTML = tickets.map(ticket => `
+                <div class="event-card mt-3">
+                    <p class="event-card__date">${ticket.date}</p>
+                    <h3 class="event-card__title">${ticket.event}</h3>
+                    <p class="event-card__venue">${ticket.venue}</p>
+                    <p class="event-card__city">${ticket.tier} — £${ticket.price}</p>
+                    <p class="text-muted" style="font-size: 0.8rem; margin-top: 0.5rem;">Order #${ticket.orderId}</p>
+                </div>
+            `).join('');
+        }
+
+        loadTickets();
+    </script>
+</body>
+</html>

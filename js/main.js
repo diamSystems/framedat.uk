@@ -1,6 +1,6 @@
 /* ============================================
    framed@ — Main JavaScript
-   Navigation, mobile menu, scroll animations
+   Navigation, mobile menu, scroll animations, auth
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollAnimations();
     initContactForm();
     initSignupForm();
+    initAuthNav();
 });
 
 /* --- Mobile Navigation --- */
@@ -91,4 +92,29 @@ function initSignupForm() {
             input.value = '';
         }, 2000);
     });
+}
+
+/* --- Auth Navigation --- */
+function initAuthNav() {
+    const user = JSON.parse(localStorage.getItem('framed_user'));
+    const navLinks = document.querySelector('.nav__links');
+    if (!navLinks) return;
+
+    // Remove existing auth link if any
+    const existingAuthLink = navLinks.querySelector('.nav__link--auth');
+    if (existingAuthLink) existingAuthLink.remove();
+
+    // Add appropriate auth link
+    const authLink = document.createElement('a');
+    authLink.className = 'nav__link nav__link--auth';
+    
+    if (user) {
+        authLink.href = 'pages/my-tickets.html';
+        authLink.textContent = 'My Tickets';
+    } else {
+        authLink.href = 'pages/login.html';
+        authLink.textContent = 'Login';
+    }
+
+    navLinks.appendChild(authLink);
 }

@@ -107,6 +107,12 @@
                     <button type="submit" class="btn btn--filled" style="width: 100%;">Pay £16.50</button>
                 </form>
 
+                <div id="successMessage" style="display: none; text-align: center; padding: 2rem;">
+                    <h2 style="font-size: 2rem; margin-bottom: 1rem;">Payment Successful!</h2>
+                    <p class="text-muted">Your ticket has been sent to your email.</p>
+                    <a href="my-tickets.html" class="btn mt-3">View My Tickets</a>
+                </div>
+
                 <div class="mt-3 text-center">
                     <p class="text-muted" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;">
                         Secured by Stripe
@@ -146,5 +152,44 @@
     </footer>
 
     <script src="../js/main.js"></script>
+    <script>
+        // Payment form handler
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Simulate payment processing
+            const btn = this.querySelector('button[type="submit"]');
+            btn.textContent = 'Processing...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                // Hide form, show success message
+                this.style.display = 'none';
+                document.getElementById('successMessage').style.display = 'block';
+
+                // Save ticket to localStorage
+                const tickets = JSON.parse(localStorage.getItem('framed_tickets') || '[]');
+                tickets.push({
+                    orderId: 'ORD-' + Date.now().toString(36).toUpperCase(),
+                    event: 'framed@ presents: Opening Night',
+                    date: '26 August 2026',
+                    venue: 'The Warehouse, Manchester',
+                    tier: 'Standard',
+                    price: '16.50',
+                    purchasedAt: new Date().toISOString()
+                });
+                localStorage.setItem('framed_tickets', JSON.stringify(tickets));
+
+                // Auto-login user if not already logged in
+                if (!localStorage.getItem('framed_user')) {
+                    const email = document.getElementById('email').value;
+                    localStorage.setItem('framed_user', JSON.stringify({
+                        email: email,
+                        loggedInAt: new Date().toISOString()
+                    }));
+                }
+            }, 1500);
+        });
+    </script>
 </body>
 </html>
