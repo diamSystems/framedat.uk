@@ -18,12 +18,46 @@ function initMobileNav() {
 
     if (!toggle || !links) return;
 
-    // Add close button dynamically for mobile
-    const closeBtn = document.createElement('button');
-    closeBtn.className = 'nav__close';
-    closeBtn.innerHTML = '×';
-    closeBtn.setAttribute('aria-label', 'Close menu');
-    links.appendChild(closeBtn);
+    // Add close button only for mobile viewports
+    const mediaQuery = window.matchMedia('(max-width: 768px)');
+    let closeBtn = null;
+
+    function addCloseButton() {
+        if (!closeBtn) {
+            closeBtn = document.createElement('button');
+            closeBtn.className = 'nav__close';
+            closeBtn.innerHTML = '×';
+            closeBtn.setAttribute('aria-label', 'Close menu');
+            closeBtn.addEventListener('click', closeMenu);
+            links.appendChild(closeBtn);
+        }
+    }
+
+    function removeCloseButton() {
+        if (closeBtn) {
+            closeBtn.remove();
+            closeBtn = null;
+        }
+    }
+
+    function closeMenu() {
+        toggle.classList.remove('nav__toggle--open');
+        links.classList.remove('nav__links--open');
+        document.body.style.overflow = '';
+    }
+
+    // Initial check
+    if (mediaQuery.matches) addCloseButton();
+
+    // Listen for viewport changes
+    mediaQuery.addEventListener('change', (e) => {
+        if (e.matches) {
+            addCloseButton();
+        } else {
+            removeCloseButton();
+            closeMenu();
+        }
+    });
 
     toggle.addEventListener('click', () => {
         toggle.classList.toggle('nav__toggle--open');
@@ -31,17 +65,9 @@ function initMobileNav() {
         document.body.style.overflow = links.classList.contains('nav__links--open') ? 'hidden' : '';
     });
 
-    closeBtn.addEventListener('click', () => {
-        toggle.classList.remove('nav__toggle--open');
-        links.classList.remove('nav__links--open');
-        document.body.style.overflow = '';
-    });
-
     links.querySelectorAll('.nav__link').forEach(link => {
         link.addEventListener('click', () => {
-            toggle.classList.remove('nav__toggle--open');
-            links.classList.remove('nav__links--open');
-            document.body.style.overflow = '';
+            closeMenu();
         });
     });
 }
@@ -121,11 +147,15 @@ function initAuthNav() {
     const authLink = document.createElement('a');
     authLink.className = 'nav__link nav__link--auth';
     
+    // Use relative paths so they work on GitHub Pages subdirectory deploys
+    const isInPagesDir = window.location.pathname.includes('/pages/');
+    const basePath = isInPagesDir ? '' : 'pages/';
+    
     if (user) {
-        authLink.href = '/pages/my-tickets.html';
+        authLink.href = basePath + 'my-tickets.html';
         authLink.textContent = 'My Tickets';
     } else {
-        authLink.href = '/pages/login.html';
+        authLink.href = basePath + 'login.html';
         authLink.textContent = 'Login';
     }
 

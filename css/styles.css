@@ -158,9 +158,17 @@ p {
         padding: 0 1.5rem;
     }
 
-    p, .section-label, .btn {
+    p, .section-label {
         margin-left: 0 !important;
         padding-left: 0 !important;
+    }
+
+    .btn {
+        display: block;
+        width: 100%;
+        max-width: 300px;
+        margin: 1.5rem auto 0;
+        text-align: center;
     }
 
     .nav__toggle { display: flex; }
