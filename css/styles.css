@@ -158,6 +158,10 @@ p {
         padding: 0 1.5rem;
     }
 
+    .section {
+        padding: 4rem 0 6rem;
+    }
+
     p, .section-label {
         margin-left: 0 !important;
         padding-left: 0 !important;
