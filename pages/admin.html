@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin — framed@</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__inner">
+            <a href="../index.html" class="nav__brand">framed@</a>
+            <button class="nav__toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav__links">
+                <a href="../index.html" class="nav__link">Home</a>
+                <a href="events.html" class="nav__link">Events</a>
+                <a href="archive.html" class="nav__link">Archive</a>
+                <a href="about.html" class="nav__link">About</a>
+                <a href="contact.html" class="nav__link">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header container">
+        <h1>Admin</h1>
+        <p class="text-large">Dashboard for Luke &amp; Tom. Analytics, content, and management.</p>
+    </header>
+
+    <!-- Auth Gate -->
+    <div id="admin-auth" class="section--tight container">
+        <div class="admin-login-card">
+            <p class="section-label">Restricted Access</p>
+            <h2>Sign In</h2>
+            <div class="divider"></div>
+            <form id="admin-login-form" class="mt-2">
+                <div class="form-group">
+                    <label for="admin-pass">Admin Passcode</label>
+                    <input type="password" id="admin-pass" placeholder="Enter admin passcode" required>
+                </div>
+                <button type="submit" class="btn">Access Dashboard</button>
+            </form>
+            <p class="text-muted mt-2" style="font-size: 0.75rem;">Demo passcode: <strong>framed2026</strong></p>
+        </div>
+    </div>
+
+    <!-- Dashboard (hidden until auth) -->
+    <div id="admin-dashboard" style="display: none;">
+
+        <!-- Quick Stats -->
+        <section class="section--tight container">
+            <p class="section-label">Overview</p>
+            <h2>Analytics</h2>
+            <div class="divider"></div>
+            <div class="admin-stats mt-3">
+                <div class="stat-card">
+                    <p class="stat-card__number" id="stat-visitors">—</p>
+                    <p class="stat-card__label">Visitors (30d)</p>
+                    <p class="stat-card__trend stat-card__trend--up" id="stat-visitors-trend"></p>
+                </div>
+                <div class="stat-card">
+                    <p class="stat-card__number" id="stat-tickets">—</p>
+                    <p class="stat-card__label">Tickets Sold</p>
+                    <p class="stat-card__trend stat-card__trend--up" id="stat-tickets-trend"></p>
+                </div>
+                <div class="stat-card">
+                    <p class="stat-card__number" id="stat-subscribers">—</p>
+                    <p class="stat-card__label">Subscribers</p>
+                    <p class="stat-card__trend stat-card__trend--up" id="stat-subscribers-trend"></p>
+                </div>
+                <div class="stat-card">
+                    <p class="stat-card__number" id="stat-revenue">—</p>
+                    <p class="stat-card__label">Revenue (30d)</p>
+                    <p class="stat-card__trend stat-card__trend--up" id="stat-revenue-trend"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Activity -->
+        <section class="section--tight container">
+            <p class="section-label">Real-Time</p>
+            <h2>Live Activity</h2>
+            <div class="divider"></div>
+            <div class="admin-live mt-3">
+                <div class="live-indicator">
+                    <span class="live-dot"></span>
+                    <span id="live-count">0</span> active visitors
+                </div>
+                <div class="live-feed" id="live-feed">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Page Views Chart -->
+        <section class="section--tight container">
+            <p class="section-label">Traffic</p>
+            <h2>Page Views (7 days)</h2>
+            <div class="divider"></div>
+            <div class="admin-chart mt-3">
+                <div class="chart-bars" id="chart-bars">
+                    <!-- Populated by JS -->
+                </div>
+                <div class="chart-labels" id="chart-labels">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Top Pages -->
+        <section class="section--tight container">
+            <p class="section-label">Insights</p>
+            <h2>Top Pages</h2>
+            <div class="divider"></div>
+            <div class="admin-table mt-3">
+                <div class="table-row table-row--header">
+                    <span>Page</span>
+                    <span>Views</span>
+                    <span>Avg. Time</span>
+                </div>
+                <div class="table-row">
+                    <span>/ (Home)</span>
+                    <span id="page-home">—</span>
+                    <span>2m 14s</span>
+                </div>
+                <div class="table-row">
+                    <span>/events</span>
+                    <span id="page-events">—</span>
+                    <span>3m 42s</span>
+                </div>
+                <div class="table-row">
+                    <span>/archive</span>
+                    <span id="page-archive">—</span>
+                    <span>1m 58s</span>
+                </div>
+                <div class="table-row">
+                    <span>/about</span>
+                    <span id="page-about">—</span>
+                    <span>1m 22s</span>
+                </div>
+                <div class="table-row">
+                    <span>/contact</span>
+                    <span id="page-contact">—</span>
+                    <span>0m 48s</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Archive Upload -->
+        <section class="section--tight container">
+            <p class="section-label">Content</p>
+            <h2>Upload to Archive</h2>
+            <div class="divider"></div>
+            <div class="admin-upload mt-3">
+                <form id="archive-upload-form">
+                    <div class="upload-zone" id="upload-zone">
+                        <p class="upload-zone__icon">+</p>
+                        <p class="upload-zone__text">Drag images here or click to browse</p>
+                        <p class="upload-zone__hint">JPG, PNG, WebP — Max 10MB per image</p>
+                        <input type="file" id="upload-input" accept="image/*" multiple style="display: none;">
+                    </div>
+                    <div id="upload-preview" class="upload-preview"></div>
+                    <div class="form-group mt-2">
+                        <label for="upload-event">Event Name</label>
+                        <input type="text" id="upload-event" placeholder="e.g. Opening Night" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="upload-date">Event Date &amp; Location</label>
+                        <input type="text" id="upload-date" placeholder="e.g. Aug 2026 — Manchester" required>
+                    </div>
+                    <button type="submit" class="btn">Upload to Archive</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Subscriber List -->
+        <section class="section--tight container">
+            <p class="section-label">Audience</p>
+            <h2>Subscribers</h2>
+            <div class="divider"></div>
+            <div class="admin-table mt-3">
+                <div class="table-row table-row--header">
+                    <span>Email</span>
+                    <span>Signed Up</span>
+                    <span>Status</span>
+                </div>
+                <div class="table-row">
+                    <span>sarah.m@gmail.com</span>
+                    <span>18 Jul 2026</span>
+                    <span class="badge badge--active">Active</span>
+                </div>
+                <div class="table-row">
+                    <span>djmarcus@hotmail.co.uk</span>
+                    <span>15 Jul 2026</span>
+                    <span class="badge badge--active">Active</span>
+                </div>
+                <div class="table-row">
+                    <span>emma.watts@outlook.com</span>
+                    <span>12 Jul 2026</span>
+                    <span class="badge badge--active">Active</span>
+                </div>
+                <div class="table-row">
+                    <span>northernsounds@gmail.com</span>
+                    <span>10 Jul 2026</span>
+                    <span class="badge badge--active">Active</span>
+                </div>
+                <div class="table-row">
+                    <span>jake.photography@me.com</span>
+                    <span>8 Jul 2026</span>
+                    <span class="badge badge--inactive">Unsubscribed</span>
+                </div>
+            </div>
+            <button class="btn mt-3" onclick="alert('In production, this would export subscriber data as CSV.')">Export List</button>
+        </section>
+
+        <!-- Recent Ticket Sales -->
+        <section class="section--tight container">
+            <p class="section-label">Sales</p>
+            <h2>Recent Ticket Sales</h2>
+            <div class="divider"></div>
+            <div class="admin-table mt-3">
+                <div class="table-row table-row--header">
+                    <span>Customer</span>
+                    <span>Event</span>
+                    <span>Qty</span>
+                    <span>Total</span>
+                </div>
+                <div class="table-row">
+                    <span>sarah.m@gmail.com</span>
+                    <span>Opening Night</span>
+                    <span>2</span>
+                    <span>&pound;30.00</span>
+                </div>
+                <div class="table-row">
+                    <span>djmarcus@hotmail.co.uk</span>
+                    <span>Opening Night</span>
+                    <span>1</span>
+                    <span>&pound;15.00</span>
+                </div>
+                <div class="table-row">
+                    <span>emma.watts@outlook.com</span>
+                    <span>Northern Frequencies</span>
+                    <span>4</span>
+                    <span>&pound;80.00</span>
+                </div>
+                <div class="table-row">
+                    <span>northernsounds@gmail.com</span>
+                    <span>Opening Night</span>
+                    <span>2</span>
+                    <span>&pound;30.00</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Actions -->
+        <section class="section container">
+            <p class="section-label">Tools</p>
+            <h2>Quick Actions</h2>
+            <div class="divider"></div>
+            <div class="admin-actions mt-3">
+                <button class="btn" onclick="alert('In production, this would open the event editor.')">Add New Event</button>
+                <button class="btn" onclick="alert('In production, this would send a newsletter to all subscribers.')">Send Newsletter</button>
+                <button class="btn" onclick="alert('In production, this would generate a full revenue report.')">Revenue Report</button>
+                <button class="btn btn--accent" onclick="document.getElementById('admin-dashboard').style.display='none'; document.getElementById('admin-auth').style.display='block'; localStorage.removeItem('framed_admin');">Sign Out</button>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer__inner">
+            <span class="footer__brand">framed@</span>
+            <div class="footer__links">
+                <a href="../index.html" class="footer__link">Home</a>
+                <a href="events.html" class="footer__link">Events</a>
+                <a href="archive.html" class="footer__link">Archive</a>
+                <a href="about.html" class="footer__link">About</a>
+                <a href="contact.html" class="footer__link">Contact</a>
+            </div>
+            <p class="footer__copy">&copy; 2026 framed@ Limited. Company No. 16987092</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/admin.js"></script>
+</body>
+</html>

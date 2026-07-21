@@ -556,6 +556,28 @@ p {
     color: #E63946;
 }
 
+/* --- Contact Cards --- */
+.contact-card {
+    border: 1px solid #000000;
+    padding: 3rem;
+    margin-top: 2rem;
+}
+
+.contact-card__email {
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+.contact-card__email .contact-info__value {
+    font-size: 1.3rem;
+}
+
+@media (max-width: 768px) {
+    .contact-card {
+        padding: 2rem;
+    }
+}
+
 /* --- About --- */
 .about-statement {
     font-size: clamp(1.3rem, 3vw, 2rem);
