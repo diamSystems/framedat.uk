@@ -158,7 +158,8 @@ p {
     }
 
     .section {
-        padding: 4rem 0 6rem;
+        padding-top: 4rem;
+        padding-bottom: 6rem;
     }
 
     p, .section-label {
