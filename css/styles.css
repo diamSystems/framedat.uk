@@ -49,7 +49,6 @@ p {
     font-size: 1rem;
     line-height: 1.7;
     max-width: 65ch;
-    padding-left: 0;
 }
 
 .text-large {
@@ -719,5 +718,4 @@ p {
     opacity: 0.4;
     margin-bottom: 1rem;
     margin-top: 1rem;
-    padding-left: 0;
 }
