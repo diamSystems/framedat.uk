@@ -66,11 +66,13 @@ p {
 }
 
 .section {
-    padding: 8rem 0;
+    padding-top: 8rem;
+    padding-bottom: 8rem;
 }
 
 .section--tight {
-    padding: 3rem 0;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
 }
 
 /* --- Navigation --- */
